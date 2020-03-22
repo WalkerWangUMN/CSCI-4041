@@ -1,0 +1,328 @@
+<!-- Created by Bracy 0.4 on Wednesday, February 19, 2020 at 3:20 PM CST -->
+<html>
+ <head>
+  <title>
+   CSci 4041: Algoriths and Data Structures
+  </title>
+  <style>
+   a:active
+    { color: purple;
+      font-weight: bold;
+      text-decoration: none }
+   a:link
+    { color: blue;
+      font-weight: bold;
+      text-decoration: none }
+   a:visited
+    { color: purple;
+      font-weight: bold;
+      text-decoration: none }
+   hr
+    { background-color: black; 
+      border: none;
+      color: black;
+      height: 1px }
+   table
+    { border-collapse: collapse }
+  </style>
+ </head>
+ <body bgcolor="#FFFFFF">
+  <p align="center">
+   <b>Homework #2</b>
+   <br />
+   <b>CS<small>CI</small> 4041: Algorithms and Data Structures (Early
+   and Late)</b>
+   <br />
+   <b>February 19, 2019</b>
+  </p>
+  <p align="justify">
+   <b>1.</b> Suppose that <i>d</i>&nbsp;&#8805; 2 is an integer
+   constant. In a <i>d</i>-ary tree, each node has <i>d</i> subtrees,
+   some of which may be empty. For example, the trees discussed along with
+   heaps had <i>d</i>&nbsp;= 2. We can represent a nearly complete
+   <i>d</i>-ary tree with <i>n</i> nodes using an array whose indexes
+   range from 0 to <i>n</i>&#8722;1. These are different from
+   Cormen&rsquo;s arrays, whose indexes start at 1.
+  </p>
+  <p align="justify">
+   <b>1a.</b> (5 points.) Suppose that <i>i</i> is the index of a
+   node in the array. Then
+   <small>CHILD</small>(<i>i,</i>&nbsp;<i>j</i>) is the index of
+   the <i>j</i>th child of the node at <i>i,</i> where
+   0&nbsp;&#8804;&nbsp;<i>j</i>&nbsp;&lt;&nbsp;<i>d.</i> If there is
+   no such child, then
+   <small>CHILD</small>(<i>i,</i>&nbsp;<i>j</i>)&nbsp;&#8805;
+   <i>n.</i> Write a short algorithm for <small>CHILD</small>. Your
+   algorithm must run in &#920;(1) time.
+  </p>
+  <p align="justify">
+   <b>1b.</b> (5 points.) Suppose that <i>i</i> is the index of a
+   node in the array. Then <small>PARENT</small>(<i>i</i>) is the
+   index of the parent of the node at index <i>i.</i> If there is no such
+   parent, then <small>PARENT</small>(<i>i</i>)&nbsp;&lt; 0. Write a
+   short algorithm for <small>PARENT</small>. Your algorithm must run in
+   &#920;(1) time.
+  </p>
+  <p align="justify">
+   <b>2.</b> Suppose that the symbol &lsquo;&#8709;&rsquo; is the empty
+   set, the symbol &lsquo;&#8746;&rsquo; is the set union operator, and the
+   symbol &lsquo;\&rsquo; is the set subtraction operator. For example:
+  </p>
+  <blockquote>
+   <table cellpadding="0" cellspacing="0">
+    <tr valign="top">
+     <td>
+      <table cellpadding="0" cellspacing="0">
+       <tr valign="top">
+        <td>
+         <p align="right">
+          &#8709; &#8746; &#8709;
+         </p>
+        </td>
+        <td>
+         <p align="center">
+          &nbsp;&nbsp;=&nbsp;&nbsp;
+         </p>
+        </td>
+        <td>
+         <p>
+          &#8709;
+         </p>
+        </td>
+       </tr>
+       <tr valign="top">
+        <td>
+         <p align="right">
+          &#8709; &#8746; { 1, 2, 3 }
+         </p>
+        </td>
+        <td>
+         <p align="center">
+          &nbsp;&nbsp;=&nbsp;&nbsp;
+         </p>
+        </td>
+        <td>
+         <p>
+          { 1, 2, 3 }
+         </p>
+        </td>
+       </tr>
+       <tr valign="top">
+        <td>
+         <p align="right">
+          { 1, 2, 3 } &#8746; &#8709;
+         </p>
+        </td>
+        <td>
+         <p align="center">
+          &nbsp;&nbsp;=&nbsp;&nbsp;
+         </p>
+        </td>
+        <td>
+         <p>
+          { 1, 2, 3 }
+         </p>
+        </td>
+       </tr>
+       <tr valign="top">
+        <td>
+         <p align="right">
+          { 1, 2, 3 } &#8746; { 4 }
+         </p>
+        </td>
+        <td>
+         <p align="center">
+          &nbsp;&nbsp;=&nbsp;&nbsp;
+         </p>
+        </td>
+        <td>
+         <p>
+          { 1, 2, 3, 4 }
+         </p>
+        </td>
+       </tr>
+       <tr valign="top">
+        <td>
+         <p align="right">
+          { 1, 2, 3 } &#8746; { 2 }
+         </p>
+        </td>
+        <td>
+         <p align="center">
+          &nbsp;&nbsp;=&nbsp;&nbsp;
+         </p>
+        </td>
+        <td>
+         <p>
+          { 1, 2, 3 }
+         </p>
+        </td>
+       </tr>
+      </table>
+     </td>
+     <td>
+      <p>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <table cellpadding="0" cellspacing="0">
+       <tr valign="top">
+        <td>
+         <p align="right">
+          &#8709; \ &#8709;
+         </p>
+        </td>
+        <td>
+         <p align="center">
+          &nbsp;&nbsp;=&nbsp;&nbsp;
+         </p>
+        </td>
+        <td>
+         <p>
+          &#8709;
+         </p>
+        </td>
+       </tr>
+       <tr valign="top">
+        <td>
+         <p align="right">
+          &#8709; \ { 1, 2, 3 }
+         </p>
+        </td>
+        <td>
+         <p align="center">
+          &nbsp;&nbsp;=&nbsp;&nbsp;
+         </p>
+        </td>
+        <td>
+         <p>
+          &#8709;
+         </p>
+        </td>
+       </tr>
+       <tr valign="top">
+        <td>
+         <p align="right">
+          { 1, 2, 3 } \ &#8709;
+         </p>
+        </td>
+        <td>
+         <p align="center">
+          &nbsp;&nbsp;=&nbsp;&nbsp;
+         </p>
+        </td>
+        <td>
+         <p>
+          { 1, 2, 3 }
+         </p>
+        </td>
+       </tr>
+       <tr valign="top">
+        <td>
+         <p align="right">
+          { 1, 2, 3 } \ { 4 }
+         </p>
+        </td>
+        <td>
+         <p align="center">
+          &nbsp;&nbsp;=&nbsp;&nbsp;
+         </p>
+        </td>
+        <td>
+         <p>
+          { 1, 2, 3 }
+         </p>
+        </td>
+       </tr>
+       <tr valign="top">
+        <td>
+         <p align="right">
+          { 1, 2, 3 } \ { 2 }
+         </p>
+        </td>
+        <td>
+         <p align="center">
+          &nbsp;&nbsp;=&nbsp;&nbsp;
+         </p>
+        </td>
+        <td>
+         <p>
+          { 1, 3 }
+         </p>
+        </td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>
+  </blockquote>
+  <p align="justify">
+   The backracking algorithm <small>MAKE</small>-<small>SETS</small>
+   uses these set operators. It is written in Cormen&rsquo;s pseudocode
+   notation. The parameters <i>n, k,</i> and <i>e</i> are nonnegative
+   integers. The parameter <i>s</i> is a set of nonnegative integers.
+  </p>
+  <blockquote>
+   <p>
+    <small>MAKE</small>-<small>SETS</small>(<i>n,</i>&nbsp;<i>k</i>)&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;<small>MAKING</small>-<small>SETS</small>(<i>n,</i>&nbsp;<i>k,</i>&nbsp;1,&nbsp;&#8709;)&nbsp;
+    <br />
+    &nbsp;
+    <br />
+    <small>MAKING</small>-<small>SETS</small>(<i>n,</i>&nbsp;<i>k,</i>&nbsp;<i>e,</i>&nbsp;<i>s</i>)&nbsp;
+    <br />
+    &nbsp;&nbsp;<b>if</b>&nbsp;k&nbsp;==&nbsp;0&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>print</b>&nbsp;<i>s</i>&nbsp;
+    <br />
+    &nbsp;&nbsp;<b>else</b>&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>for</b>&nbsp;<i>e</i>&#8242;&nbsp;=&nbsp;<i>e</i>&nbsp;<b>to</b>&nbsp;<i>n</i>&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>s</i>&nbsp;=&nbsp;<i>s</i>&nbsp;&#8746;&nbsp;{&nbsp;<i>e</i>&#8242;&nbsp;}&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>MAKING</small>-<small>SETS</small>(<i>n,</i>&nbsp;<i>k</i>&#8722;1,&nbsp;<i>e</i>&#8242;+&nbsp;1,&nbsp;<i>s</i>)&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>s</i>&nbsp;=&nbsp;<i>s</i>&nbsp;\&nbsp;{&nbsp;<i>e</i>&#8242;&nbsp;}
+   </p>
+  </blockquote>
+  <p align="justify">
+   <b>2a.</b> (5 points.) What sets will
+   <small>MAKE</small>-<small>SETS</small>(4,&nbsp;3) print? Hint:
+   enumerate the recursive calls to
+   <small>MAKING</small>-<small>SETS</small> breadth-first.
+  </p>
+  <p align="justify">
+   <b>2b.</b> (5 points.) Let <i>l</i> and <i>m</i> be
+   nonnegative integers. What does
+   <small>MAKE</small>-<small>SETS</small>(<i>l,</i>&nbsp;<i>m</i>)
+   compute? Your answer must be one short sentence, stated in terms of
+   <i>l</i> and <i>m.</i>
+  </p>
+  <p align="justify">
+   <b>3.</b> (10 points.) Suppose that <i>A</i> is an array that is
+   organized as a min-heap of integers, and that <i>e</i> is an integer.
+   Write an algorithm
+   <small>IS</small>-<small>IN</small>-<small>MIN</small>-<small>HEAP</small>(<i>A,</i>&nbsp;<i>e</i>)
+   that returns <i>true</i> if <i>e</i> is an element of
+   <i>A</i>, and returns <i>false</i> otherwise. Your algorithm must
+   not change <i>A,</i> and it must not make copies of <i>A.</i> It
+   must avoid visiting all elements of <i>A</i> if possible, so it must
+   not use linear search. You may state your algorithm in Cormen&rsquo;s
+   pseudocode, or in a programming language.
+  </p>
+  <p align="justify">
+   <b>4.</b> (5 points.) Can the run time of
+   <small>IS</small>-<small>IN</small>-<small>MIN</small>-<small>HEAP</small>
+   be determined using the Master Theorem? Briefly explain why, or why not.
+  </p>
+  <p align="justify">
+   This assignment is worth <b>35 points.</b> It will be due on
+   <b>Monday, March 2, 2020</b> at <b>11:55
+   <small>PM</small>.</b> If you do not know how to turn in your work,
+   then please ask your lab TA&rsquo;s.
+  </p>
+ </body>
+</html>

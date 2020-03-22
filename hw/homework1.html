@@ -1,0 +1,369 @@
+<!-- Created by Bracy 0.4 on Tuesday, February 4, 2020 at 12:36 AM CST -->
+<html>
+ <head>
+  <title>
+   CSci 4041 Homework #1
+  </title>
+  <style>
+   a:active
+    { color: purple;
+      font-weight: bold;
+      text-decoration: none }
+   a:link
+    { color: blue;
+      font-weight: bold;
+      text-decoration: none }
+   a:visited
+    { color: purple;
+      font-weight: bold;
+      text-decoration: none }
+   hr
+    { background-color: black;
+      border: none;
+      color: black;
+      height: 1px }
+   table
+    { border-collapse: collapse }
+  </style>
+ </head>
+ <body bgcolor="#FFFFFF">
+  <p align="center">
+   <b>Homework #1</b>
+   <br />
+   <b>CS<small>CI</small> 4041: Algorithms and Data Structures</b>
+   <br />
+   <b>February 4, 2020</b>
+  </p>
+  <p align="justify">
+   The Python function <tt>mergesort</tt> is shown below. It recursively
+   sorts a list of numbers <tt>U</tt> using a recursive divide-and-conquer
+   algorithm, then returns the sorted list <tt>S</tt>. The function
+   <tt>head</tt> returns the first element of a nonempty list
+   <tt>Q</tt>, and the function <tt>tail</tt> returns a new list like
+   <tt>Q</tt> but without its first element. Lines
+   <tt>06</tt>&#8211;<tt>07</tt> detect if <tt>U</tt> is
+   trivially sorted. Lines <tt>09</tt>&#8211;<tt>21</tt> divide
+   <tt>U</tt> into two halves, <tt>L</tt> and <tt>R</tt>, of
+   approximately equal lengths. Lines <tt>22</tt>&#8211;<tt>23</tt>
+   recursively sort <tt>L</tt> and <tt>R</tt>. Lines
+   <tt>24</tt>&#8211;<tt>33</tt> combines the sorted lists
+   <tt>L</tt> and <tt>R</tt> into a sorted list <tt>S</tt>.
+  </p>
+  <blockquote>
+   <p>
+    <tt>01&nbsp;def&nbsp;head(Q):&nbsp;</tt>
+    <br />
+    <tt>02&nbsp;&nbsp;&nbsp;return&nbsp;Q[0]&nbsp;</tt>
+    <br />
+    <tt>&nbsp;</tt>
+    <br />
+    <tt>03&nbsp;def&nbsp;tail(Q):&nbsp;</tt>
+    <br />
+    <tt>04&nbsp;&nbsp;&nbsp;return&nbsp;Q[1:]&nbsp;</tt>
+    <br />
+    <tt>&nbsp;</tt>
+    <br />
+    <tt>05&nbsp;def&nbsp;mergesort(U):&nbsp;</tt>
+    <br />
+    <tt>06&nbsp;&nbsp;&nbsp;if&nbsp;U&nbsp;==&nbsp;[]&nbsp;or&nbsp;tail(U)&nbsp;==&nbsp;[]:&nbsp;</tt>
+    <br />
+    <tt>07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;U&nbsp;</tt>
+    <br />
+    <tt>08&nbsp;&nbsp;&nbsp;else:&nbsp;</tt>
+    <br />
+    <tt>09&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;=&nbsp;[]&nbsp;</tt>
+    <br />
+    <tt>10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;=&nbsp;[]&nbsp;</tt>
+    <br />
+    <tt>11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;True:&nbsp;</tt>
+    <br />
+    <tt>12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;U&nbsp;==&nbsp;[]:&nbsp;</tt>
+    <br />
+    <tt>13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break&nbsp;</tt>
+    <br />
+    <tt>14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:&nbsp;</tt>
+    <br />
+    <tt>15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;=&nbsp;L&nbsp;+&nbsp;[head(U)]&nbsp;</tt>
+    <br />
+    <tt>16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;=&nbsp;tail(U)&nbsp;</tt>
+    <br />
+    <tt>17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;U&nbsp;==&nbsp;[]:&nbsp;</tt>
+    <br />
+    <tt>18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break&nbsp;</tt>
+    <br />
+    <tt>19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:&nbsp;</tt>
+    <br />
+    <tt>20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;=&nbsp;R&nbsp;+&nbsp;[head(U)]&nbsp;</tt>
+    <br />
+    <tt>21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;=&nbsp;tail(U)&nbsp;</tt>
+    <br />
+    <tt>22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;=&nbsp;mergesort(L)&nbsp;</tt>
+    <br />
+    <tt>23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;=&nbsp;mergesort(R)&nbsp;</tt>
+    <br />
+    <tt>24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;=&nbsp;[]&nbsp;</tt>
+    <br />
+    <tt>25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;L&nbsp;!=&nbsp;[]&nbsp;and&nbsp;R&nbsp;!=&nbsp;[]:&nbsp;</tt>
+    <br />
+    <tt>26&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;head(L)&nbsp;&lt;=&nbsp;head(R):&nbsp;</tt>
+    <br />
+    <tt>27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;=&nbsp;S&nbsp;+&nbsp;[head(L)]&nbsp;</tt>
+    <br />
+    <tt>28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;=&nbsp;tail(L)&nbsp;</tt>
+    <br />
+    <tt>29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:&nbsp;</tt>
+    <br />
+    <tt>30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;=&nbsp;S&nbsp;+&nbsp;[head(R)]&nbsp;</tt>
+    <br />
+    <tt>31&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;=&nbsp;tail(R)&nbsp;</tt>
+    <br />
+    <tt>32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;=&nbsp;S&nbsp;+&nbsp;L&nbsp;+&nbsp;R&nbsp;</tt>
+    <br />
+    <tt>33&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;S</tt>
+   </p>
+  </blockquote>
+  <p align="justify">
+   Here are some examples of how <tt>head</tt>, <tt>tail</tt>, and
+   <tt>mergesort</tt> work, where the arrow &lsquo;&#8658;&rsquo; means
+   <i>returns.</i> Python source code for these functions is on the file
+   <a href="mergesort.py">
+    <tt>mergesort.py</tt>
+   </a>
+   if you want to try them on your own examples.
+  </p>
+  <blockquote>
+   <table cellpadding="0" cellspacing="0">
+    <tr valign="top">
+     <td>
+      <p align="right">
+       <tt>head([3])</tt>
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;&#8658;&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       <tt>3</tt>
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p align="right">
+       <tt>tail([3])</tt>
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;&#8658;&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       <tt>[]</tt>
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p align="right">
+       <tt>head([2, 0, 1])</tt>
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;&#8658;&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       <tt>2</tt>
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p align="right">
+       <tt>tail([2, 0, 1])</tt>
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;&#8658;&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       <tt>[0, 1]</tt>
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p>
+       &nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       &nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       &nbsp;
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p align="right">
+       <tt>mergesort([])</tt>
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;&#8658;&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       <tt>[]</tt>
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p align="right">
+       <tt>mergesort([1])</tt>
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;&#8658;&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       <tt>[1]</tt>
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p align="right">
+       <tt>mergesort([1, 0])</tt>
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;&#8658;&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       <tt>[0, 1]</tt>
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p align="right">
+       <tt>mergesort([4, 3, 2, 1, 0])</tt>
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;&#8658;&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       <tt>[0, 1, 2, 3, 4]</tt>
+      </p>
+     </td>
+    </tr>
+   </table>
+  </blockquote>
+  <p align="justify">
+   <b>1.</b> Prove that <tt>mergesort</tt>&rsquo;s division phase is
+   correct (lines <tt>09</tt>&#8211;<tt>21</tt>). Do not prove that
+   the rest of <tt>mergesort</tt> is correct. Like the proofs in
+   Cormen&rsquo;s text, your proof must use a <i>loop invariant</i>. It
+   must have three parts: <i>initialization, maintenance,</i> and
+   <i>termination.</i>
+  </p>
+  <blockquote>
+   <p>
+    <b>1a.</b> (10 points.) Find a loop invariant for the division loop.
+   </p>
+   <p>
+    <b>1b.</b> (10 points.) Use your loop invariant to prove the
+    initialization part.
+   </p>
+   <p>
+    <b>1c.</b> (10 points.) Use your loop invariant to prove the
+    maintenance part.
+   </p>
+   <p>
+    <b>1d.</b> (10 points.) Use your loop invariant to prove the
+    termination part.
+   </p>
+  </blockquote>
+  <p align="justify">
+   You may write your proof in English, in mathematical notation, or in a
+   mixture of the two. Unlike the proofs in Cormen&rsquo;s text,
+   <tt>mergesort</tt> works with lists instead of arrays, so you
+   don&rsquo;t have to think about indexes. This may make your proof easier to
+   write. Here are some hints about how to write your proof.
+  </p>
+  <ul>
+   <li>
+   <p align="justify">
+    Think about letting <tt>U</tt>&#8320; be the value of <tt>U</tt>
+    when <tt>mergesort</tt> is called for the first time.
+   </p>
+   <li>
+   <p align="justify">
+    Think about the lengths of <tt>U</tt>&#8320;, <tt>U</tt>,
+    <tt>L</tt>, and <tt>R</tt>.
+   </p>
+   <li>
+   <p align="justify">
+    Think about using <i>multisets.</i> A multiset is like a set, because
+    it is an unordered collection of zero or more elements. It is unlike a set,
+    because its elements can appear more than once. For example,
+    &#10627;&nbsp;1,&nbsp;2,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;4,&nbsp;4&nbsp;&#10628;
+    is a multiset. It is the same multiset as
+    &#10627;&nbsp;2,&nbsp;1,&nbsp;4,&nbsp;4,&nbsp;3,&nbsp;4,&nbsp;2&nbsp;&#10628;.
+   </p>
+  </ul>
+  <p align="justify">
+   <b>2.</b> (10 points.) Find the run time of
+   <tt>mergesort</tt>&rsquo;s combining phase (lines
+   <tt>24</tt>&#8211;<tt>33</tt>). Do not find the run time for the
+   rest of <tt>mergesort</tt>. Do not use <i>O</i>, &#937;, or
+   &#920;. Your answer must define <tt>T</tt>(<i>n</i>), where
+   <i>n</i> is the number of elements to be sorted.
+   <br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Assume that <tt>head</tt>,
+   <tt>tail</tt>, list concatenation &lsquo;<tt>+</tt>&rsquo;, and
+   list creation &lsquo;<tt>[</tt><i>x</i><tt>]</tt>&rsquo;,
+   work in constant time. (This is probably not true in Python, but assume it
+   anyway!) Like the example in Cormen&rsquo;s text, also assume that the run
+   times of lines <tt>24</tt>, <tt>25</tt> ..., <tt>33</tt> are
+   constants <i>c</i>&#8322;&#8324;, <i>c</i>&#8322;&#8325; ...,
+   <i>c</i>&#8323;&#8323;. All these constants are greater than or equal
+   to 0.
+  </p>
+  <p align="justify">
+   This assignment is worth 50 points. It is due in the course Canvas site at
+   <b>11:55 <small>PM</small></b> on <b>February 18, 2020</b>.
+   If you do not know how to turn in your work, then please ask your discussion
+   section TA&rsquo;s.
+  </p>
+ </body>
+</html>
