@@ -1,0 +1,386 @@
+<!-- Created by Bracy 0.4 on Monday, March 16, 2020 at 7:52 PM CDT -->
+<html>
+ <head>
+  <title>
+   CSci 4041: Algorithms and Data Structures
+  </title>
+  <style>
+   a:active
+    { color: purple;
+      font-weight: bold;
+      text-decoration: none }
+   a:link
+    { color: blue;
+      font-weight: bold;
+      text-decoration: none }
+   a:visited
+    { color: purple;
+      font-weight: bold;
+      text-decoration: none }
+   hr
+    { background-color: black;
+      border: none;
+      color: black;
+      height: 1px }
+   table
+    { border-collapse: collapse }
+  </style>
+ </head>
+ <body bgcolor="#FFFFFF">
+  <p align="center">
+   <b>Homework #3</b>
+   <br />
+   <b>CS<small>CI</small> 4041: Algorithms and Data Structures (Early
+   and Late)</b>
+   <br />
+   <b>March 14, 2020</b>
+  </p>
+  <p align="justify">
+   <b>1.</b> Suppose that the array
+   <i>A</i>[0&nbsp;:&nbsp;<i>m</i>&#8722;1] is used as a hash table.
+   It has <i>n</i> keys, where <i>n</i>&nbsp;&gt;&nbsp;0. It resolves
+   collisions by chaining. Simple uniform hashing is in effect.
+   <br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In the chained hash tables discussed in
+   lectures, each element of the array was an association list that mapped keys
+   to their values. However, this hash table is different: each element of
+   <i>A</i> is a binary search tree that maps keys to their values. Keys
+   are totally ordered. The binary search trees might not be well-balanced.
+  </p>
+  <blockquote>
+   <p align="justify">
+    <b>1a.</b> (5 points.) In the best case, how many key comparisons are
+    needed to find a key in <i>A</i>? Briefly explain how the best case
+    can occur.
+   </p>
+   <p align="justify">
+    <b>1b.</b> (5 points.) In the worst case, how many key comparisons are
+    needed to find a key in <i>A</i>? Briefly explain how the worst case
+    can occur.
+   </p>
+   <p align="justify">
+    <b>1c.</b> (5 points.) In the average case, how many key comparisons
+    are needed to find a key in <i>A</i>? Briefly explain your answer.
+   </p>
+  </blockquote>
+  <p align="justify">
+   Your answers may be in English, optionally with a little mathematics. You
+   need not prove that your answers are correct.
+  </p>
+  <p align="justify">
+   <b>2.</b> (10 points.) The procedure
+   H<small>ASH</small>-S<small>EARCH</small> takes a hash table
+   <i>T</i>[0&nbsp;:&nbsp;<i>m</i>&#8722;1] and a key <i>k</i>
+   as its parameters. Each element of <i>T</i> is either a key or
+   <small>NIL</small>. The procedure searches for <i>k</i> in
+   <i>T</i> by probing. If it finds <i>k,</i> then it returns the
+   index <i>j</i> where <i>k</i> appears in <i>T.</i> If it
+   cannot find <i>k,</i> then it returns &#8722;1. (A procedure very much
+   like H<small>ASH</small>-S<small>EARCH</small> is discussed on
+   pages 269&#8211;274 of Cormen.)
+  </p>
+  <blockquote>
+   <p>
+    H<small>ASH</small>-S<small>EARCH</small>(<i>T</i>,&nbsp;<i>k</i>)&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;<i>i</i>&nbsp;=&nbsp;0&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;<b>repeat</b>&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>j</i>&nbsp;=&nbsp;<i>h</i>(<i>k</i>,&nbsp;<i>i</i>)&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b>&nbsp;<i>T</i>[<i>j</i>]&nbsp;==&nbsp;<i>k</i>&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return</b>&nbsp;<i>j</i>&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b>&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>i</i>&nbsp;=&nbsp;<i>i</i>&nbsp;+&nbsp;1&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;<b>until</b>&nbsp;<i>T</i>[<i>j</i>]&nbsp;==&nbsp;<small>NIL</small>&nbsp;<b>or</b>&nbsp;<i>i</i>&nbsp;==&nbsp;<i>m</i>&nbsp;
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;<b>return</b>&nbsp;&#8722;1
+   </p>
+  </blockquote>
+  <p align="justify">
+   Suppose that the hash function <i>h</i> uses quadratic probing. It is
+   defined like this:
+  </p>
+  <blockquote>
+   <p>
+    <i>h</i>(<i>k</i>, <i>i</i>) =
+    (<i>h</i>&#8242;(<i>k</i>) + <i>i</i>&#178;) <b>mod</b>
+    <i>m</i>
+   </p>
+  </blockquote>
+  <p align="justify">
+   The function <i>h</i>&#8242; takes a key <i>k</i> as its
+   parameter, and returns a nonnegative integer that is somehow computed from
+   <i>k.</i> (A more general version of <i>h</i> is discussed on page
+   272 of Cormen.)
+   <br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Write a procedure called
+   A<small>DDY</small>-H<small>ASH</small>-S<small>EARCH</small>
+   that works like H<small>ASH</small>-S<small>EARCH</small>, but
+   which computes <i>i</i>&#178; using the fact that the sum of the first
+   <i>n</i> odd integers is <i>n</i>&#178;, where
+   <i>n</i>&nbsp;&#8805;&nbsp;0. For example:
+  </p>
+  <blockquote>
+   <table cellpadding="0" cellspacing="0">
+    <tr valign="top">
+     <td>
+      <p>
+       0&#178;
+      </p>
+     </td>
+     <td>
+      <p>
+       &nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       &nbsp;
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       0
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p>
+       1&#178;
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       1
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       1
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p>
+       2&#178;
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       1 + 3
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       4
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p>
+       3&#178;
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       1 + 3 + 5
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       9
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p>
+       4&#178;
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       1 + 3 + 5 + 7
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       16
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p>
+       5&#178;
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       1 + 3 + 5 + 7 + 9
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &nbsp;&nbsp;=&nbsp;&nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       25
+      </p>
+     </td>
+    </tr>
+    <tr valign="top">
+     <td>
+      <p>
+       &nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       &nbsp;
+      </p>
+     </td>
+     <td>
+      <p align="center">
+       &#8942;
+      </p>
+     </td>
+     <td>
+      <p>
+       &nbsp;
+      </p>
+     </td>
+     <td>
+      <p>
+       &nbsp;
+      </p>
+     </td>
+    </tr>
+   </table>
+  </blockquote>
+  <p align="justify">
+   You may write
+   A<small>DDY</small>-H<small>ASH</small>-S<small>EARCH</small>
+   in pseudocode, or in a programming language. However, you are not allowed to
+   do certain things.
+  </p>
+  <ul>
+   <li>
+   <p>
+    You are not allowed to use more than one loop.
+   </p>
+   <li>
+   <p>
+    You are not allowed to use recursion.
+   </p>
+   <li>
+   <p>
+    You are not allowed to use exponentiation or multiplication in any way.
+   </p>
+   <li>
+   <p>
+    You are not allowed to use bitwise shift operations like
+    <tt>&lt;&lt;</tt> or <tt>&gt;&gt;</tt>.
+   </p>
+   <li>
+   <p>
+    You are not allowed to use additional arrays, lists, trees, etc.
+   </p>
+  </ul>
+  <p align="justify">
+   If you do any of these bad things, then you will receive <i>zero
+   points</i> for this question. But here are some hints about things you
+   <i>are</i> allowed to do.
+  </p>
+  <ul>
+   <li>
+   <p>
+    You can use additional integer variables.
+   </p>
+   <li>
+   <p>
+    Do not use the function <i>h.</i> Use <i>h</i>&#8242; instead.
+    Let
+    A<small>DDY</small>-H<small>ASH</small>-S<small>EARCH</small>
+    compute <i>i</i>&#178;.
+   </p>
+   <li>
+   <p>
+    You can use array indexing like <i>T</i>[<i>j</i>] even though it
+    probably uses multiplication internally.
+   </p>
+   <li>
+   <p>
+    You can use the <b>mod</b> operator even though it probably uses
+    multiplication internally.
+   </p>
+  </ul>
+  <p align="justify">
+   This assignment is worth 25 points. It will be due on Canvas in a little
+   over a week, at <b>11:55 <small>PM</small></b> on <b>March 27,
+   2020.</b> Please contact your discussion section TA&rsquo;s if you
+   don&rsquo;t know how to turn in your work.
+  </p>
+ </body>
+</html>
